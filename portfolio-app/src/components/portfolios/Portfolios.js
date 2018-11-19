@@ -25,7 +25,7 @@ class Portfolios extends React.Component {
           <Row className="show-grid Portfolios" >
           {
           this.props.portfolios.map((portfolio,index)=> {
-            return  <Col xs={12} sm={12} md={12} lg={4} key={index}>
+            return  <Col xs={12} sm={12} md={12} lg={4} key={portfolio.id}>
                         <PortfolioMin fullView={this.fullView} editView={this.editView} delete={this.delete} portfolio={portfolio} />
                     </Col>      
           })
