@@ -5,10 +5,6 @@ import {Link} from 'react-router-dom';
 class ProductItem extends React.Component {
     constructor(props) {
         super(props);
-        // create a ref to store the textInput DOM element
-        this.myRef = React.createRef();
-        console.log(this.myRef);
-        // this.focusTextInput = this.focusTextInput.bind(this);
     }
 
     getCardClassName = () => {

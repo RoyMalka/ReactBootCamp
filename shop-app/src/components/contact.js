@@ -21,7 +21,6 @@ class Contact extends React.Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        
         this.setState(prevState => ({
             newContact: {
                 ...prevState.newContact,
@@ -41,19 +40,19 @@ class Contact extends React.Component {
             <h1>Conatct us</h1>
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group" >
-                    <input value={this.state.newContact.name} onChange={this.handleChange} className="form-control" type="text" name="name" placeholder="Full Name" required={true}/>
+                    <input value={this.state.newContact.name} onChange={this.handleChange} className="form-control" type="text" name="name" placeholder="Full Name" />
                 </div>
                 <div className="form-group">
                     <input value={this.state.newContact.description} onChange={this.handleChange} className="form-control" type="text" name="phone" placeholder="Phone"/>
                 </div>
                 <div className="form-group">
-                    <input value={this.state.newContact.email} onChange={this.handleChange} className="form-control" type="text" name="email" placeholder="Email" required={true}/>
+                    <input value={this.state.newContact.email} onChange={this.handleChange} className="form-control" type="text" name="email" placeholder="Email" />
                 </div>    
                 <div className="form-group">
                     <button className="btn-back">Send</button>
                 </div>                   
             </form>
-            <Prompt when={this.state.newContact.name || this.state.newContact.phone || this.state.newContact.mail} message="Are you sure?" />
+            <Prompt when={this.state.newContact.name !== "" || this.state.newContact.phone !== "" || this.state.newContact.email !== ""} message="Are you sure?" />
         </div>
     );
   }

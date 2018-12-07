@@ -26,20 +26,20 @@ ul.topnav {
 
 ul.topnav li {float: left;}
 
-ul.topnav li  {
+ul.topnav li  a{
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 4px 6px;
     text-decoration: none;
 }
 
-ul.topnav li :hover:not(.active) {background-color: rgb(218, 72, 109);}
-ul.topnav li :hover {background-color: rgb(218, 72, 109);}
+ul.topnav li :hover:not(.active)  {background-color: rgb(218, 72, 109);}
+ul.topnav li :hover  {background-color: rgb(218, 72, 109);}
 
-ul.topnav li .active {background-color: rgb(211, 48, 97);}
+ul.topnav li .active  {background-color: rgb(211, 48, 97);}
 
-ul.topnav li.right {float: right;}
+ul.topnav li.right  {float: right;}
 
 .home {
   text-align: center;
@@ -61,8 +61,8 @@ div.product-item-min {
   margin: 1.66%;
 }
 div.product-item-full {
-  width: 95%;
-  margin: 2.5%;
+  width: 85%;
+  margin: 7.5%;
 }
 div.card {
   min-height: 700px;
@@ -103,7 +103,7 @@ img.product-image-min {
   height: 350px;
 }
 img.product-image-full {
-  height: auto;
+  height: 550px;
 }
 
 .card-about {
@@ -125,7 +125,7 @@ a.btn-buy:hover {
 }
 
 @media screen and (max-width: 723px){
-  div.product-item {
+  div.product-item-min {
     width: 48%;
     margin: 1%;
   }
@@ -152,7 +152,7 @@ a.btn-buy:hover {
 }
 
 @media screen and (max-width: 600px){
-  div.product-item {
+  div.product-item-min {
     width: 90%;
     margin: 5%;
   }

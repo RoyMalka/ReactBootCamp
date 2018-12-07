@@ -8,7 +8,7 @@ class NavBar extends React.Component {
     }
     renderCart = () => {
         if(this.props.isLoggedIn) {           
-            return  <NavLink to="/cart"><li className="right">Cart</li></NavLink>
+            return  <li className="right"><NavLink to="/cart">Cart</NavLink></li>
         }
         return <li className="right"><a onClick={this.login}>Login</a></li>
     } 
@@ -18,10 +18,10 @@ class NavBar extends React.Component {
             <div className="navbar">
                 <Header />
                 <ul className="topnav">
-                    <NavLink exact to="/"><li>Home</li></NavLink>
-                    <NavLink to="/about"><li>About</li></NavLink>
-                    <NavLink to="/products"><li>Products</li></NavLink>
-                    <NavLink to="/contact"><li>Contacts</li></NavLink>
+                    <li><NavLink exact to="/">Home</NavLink></li>
+                    <li><NavLink to="/about">About</NavLink></li>
+                    <li><NavLink to="/products">Products</NavLink></li>
+                    <li> <NavLink to="/contact">Contacts</NavLink></li>
                     {this.renderCart()}                                      
                 </ul>
             </div>
