@@ -1,5 +1,5 @@
 import React from 'react';
-import cartService from '../services/cartService';
+import cartService from '../../../services/cartService';
 import {Link} from 'react-router-dom';
 
 class ProductItem extends React.Component {

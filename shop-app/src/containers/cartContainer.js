@@ -1,5 +1,5 @@
 import React from 'react';
-import CartItems from '../components/cartItems';
+import CartItems from '../components/Cart/components/cartItems';
 import cartService from '../services/cartService';
 
 class CartContainer extends React.Component {

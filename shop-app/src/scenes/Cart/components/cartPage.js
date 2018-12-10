@@ -1,5 +1,5 @@
 import React from 'react';
-import CartContainer from '../containers/cartContainer';
+import CartContainer from '../../../containers/cartContainer';
 
 const CartPage = (props) => (
   <CartContainer />

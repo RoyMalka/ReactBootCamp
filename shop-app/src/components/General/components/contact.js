@@ -12,12 +12,9 @@ class Contact extends React.Component {
                 email: ''
             }
         };
-    
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-      handleChange(event) {
+      handleChange = (event) => {
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -29,7 +26,7 @@ class Contact extends React.Component {
         }))
       }
     
-      handleSubmit(event) {
+      handleSubmit = (event) =>{
         event.preventDefault();
         this.setState(() => this.props.history.push('/products'));
       }
@@ -43,7 +40,7 @@ class Contact extends React.Component {
                     <input value={this.state.newContact.name} onChange={this.handleChange} className="form-control" type="text" name="name" placeholder="Full Name" />
                 </div>
                 <div className="form-group">
-                    <input value={this.state.newContact.description} onChange={this.handleChange} className="form-control" type="text" name="phone" placeholder="Phone"/>
+                    <input value={this.state.newContact.phone} onChange={this.handleChange} className="form-control" type="text" name="phone" placeholder="Phone"/>
                 </div>
                 <div className="form-group">
                     <input value={this.state.newContact.email} onChange={this.handleChange} className="form-control" type="text" name="email" placeholder="Email" />
@@ -57,7 +54,6 @@ class Contact extends React.Component {
     );
   }
 }
-
 
 export default Contact;
 

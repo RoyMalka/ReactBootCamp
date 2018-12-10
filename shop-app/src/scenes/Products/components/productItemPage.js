@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductItemContainer from '../containers/productItemContainer';
+import ProductItemContainer from '../../../containers/productItemContainer';
 
 const ProductItemPage = props => (
     <React.Fragment>

@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductList from '../components/productList';
-import productService from '../services/productService';
+import ProductList from '../components/Products/components/productList';
+import productService from '../services/productsService';
 
 class ProductListContainer extends React.Component {
     state = {

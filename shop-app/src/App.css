@@ -124,15 +124,6 @@ a.btn-buy:hover {
   background: rgba(8, 231, 94, 0.74);
 }
 
-@media screen and (max-width: 723px){
-  div.product-item-min {
-    width: 48%;
-    margin: 1%;
-  }
-  img.product-image {
-    height: 400px;
-  }
-}
 .back-btn-container {
   text-align: center;
   padding: 20px;
@@ -149,6 +140,16 @@ a.btn-buy:hover {
 
 .btn-back:hover {
   background: rgb(15, 221, 211);
+}
+
+@media screen and (max-width: 890px){
+  div.product-item-min {
+    width: 48%;
+    margin: 1%;
+  }
+  img.product-image {
+    height: 400px;
+  }
 }
 
 @media screen and (max-width: 600px){
@@ -168,6 +169,8 @@ a.btn-buy:hover {
     font-size: 12px;
   }
 }
+
+
 
 .cartItems {
   /* margin: 0 auto; */

@@ -1,7 +1,7 @@
 import React from 'react';
-import ProductItem from '../components/productItem';
+import ProductItem from '../components/Products/components/productItem';
 import cartService from '../services/cartService';
-import productService from "../services/productService";
+import productService from "../services/productsService";
 
 class ProductItemContainer extends React.Component {
   state = {
