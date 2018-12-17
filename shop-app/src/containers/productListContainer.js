@@ -1,37 +1,34 @@
 import React from 'react';
 import ProductList from '../components/Products/components/productList';
-import productService from '../services/productsService';
+import {loadProducts} from '../actions';
+import {connect} from 'react-redux';
 
-class ProductListContainer extends React.Component {
-    state = {
-        products: null,
-      };
-      mounted = false;
-      
-      componentDidMount() {
-        this.mounted = true;
-        productService.loadProducts()
-          .then(products => this.mounted ? this.setState({products}) : null);
-      }
-
-  componentWillUnmount() {
-    this.mounted = false;
+class ProductListContainer extends React.Component {   
+  componentDidMount() {
+    this.props.loadProducts();      
   }
-
   render() {
-    const {products} = this.state;
     return (
       <div className="ProductsList">
-        {products ? (
-          <React.Fragment>
-            <ProductList isLoggedIn={this.props.isLoggedIn} products={products} />
-          </React.Fragment>
-        ) : (
+        {this.props.isLoading ? (
           <span>Loading..</span>
+        ) : (
+          <React.Fragment>
+            <ProductList isLoggedIn={this.props.isLoggedIn} products={this.props.products} />
+          </React.Fragment>
         )}       
       </div>
     );
   }
 }
 
-export default ProductListContainer;
+const mapStateToProps = state => ({
+  isLoading: state.products.isLoading,
+  products: state.products.products
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    loadProducts: () => dispatch(loadProducts())
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProductListContainer);

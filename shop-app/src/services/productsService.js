@@ -71,13 +71,17 @@ async function loadProducts() {
     return products;
 }
 
-async function loadProduct(id) {
-  const products = await loadProducts();
-  return products.find(o => o.id === id);
+
+ function loadProduct(id) {
+      var product = loadProducts().
+        then(products => {
+            return products.find(o => o.id === id);
+        });
+        return product;     
 }
 
 
 export default {
   loadProducts,
-  loadProduct,
+  loadProduct
 }

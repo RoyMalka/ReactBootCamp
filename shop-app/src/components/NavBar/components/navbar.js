@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from './header';
 import {NavLink} from 'react-router-dom';
-import { translate, Trans } from 'react-i18next';
-import Flag from "react-flags";
+import { translate } from 'react-i18next';
+
 
 class NavBar extends React.Component {
 

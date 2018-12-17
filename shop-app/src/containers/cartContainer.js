@@ -1,45 +1,36 @@
 import React from 'react';
 import CartItems from '../components/Cart/components/cartItems';
-import cartService from '../services/cartService';
+import {deleteFromCart,getCartItems} from '../actions';
+import {connect} from 'react-redux';
 
 class CartContainer extends React.Component {
-  state = {
-    cartItems: null,
-  };
-  mounted = false;
 
   componentDidMount() {
-    this.mounted = true;
-    cartService.loadCartItems()
-    .then(cartItems => this.mounted ? this.setState({cartItems}) : null);
+    this.props.getCartItems();
   }
-  
-
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
-  deleteFromCart = (id) => {
-      const cartItems = cartService.deleteFromCart(id);
-      this.setState({cartItems});
-  }
-
-
-render() {
-    const {cartItems} = this.state;
-    // console.log(cartItems);
-    return (
+  render() {
+    return  (
       <div className="cart">
-        {cartItems ? (
-          <React.Fragment>
-            <CartItems deleteFromCart={this.deleteFromCart} cartItems={cartItems} />
-          </React.Fragment>
-        ) : (
-          <span>Loading..</span>
-        )}       
-      </div>
+          {this.props.isLoading ? (
+              <span>Loading..</span>
+          ) : (         
+            <React.Fragment>
+              <CartItems deleteFromCart={this.props.deleteFromCart} cartItems={this.props.cartItems} />
+            </React.Fragment>
+          )}       
+       </div>
     );
   }
 }
 
-export default CartContainer;
+const mapStateToProps = state => ({
+  isLoading: state.cart.isLoading,
+  cartItems: state.cart.cartItems
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    deleteFromCart: (id) => dispatch(deleteFromCart(id)),
+    getCartItems: () => dispatch(getCartItems())
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(CartContainer);

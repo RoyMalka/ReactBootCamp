@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar/components/navbar';
@@ -12,13 +12,15 @@ import {I18nextProvider} from 'react-i18next';
 import i18next from 'i18next';
 import navbar_en from "./translations/en/navbar.json";
 import navbar_he from "./translations/he/navbar.json";
+import {connect} from 'react-redux';
+import {login} from './actions';
 
 i18next.init({
-    interpolation: { escapeValue: false },  // React already does escaping
-    lng: 'en',                              // language to use
+    interpolation: { escapeValue: false },  
+    lng: 'en',                              
     resources: {
         en: {
-            navbar: navbar_en               // 'common' is our custom namespace
+            navbar: navbar_en               
         },
         he: {
             navbar: navbar_he
@@ -27,38 +29,35 @@ i18next.init({
 });
 
 
-class App extends Component {
-  state = {
-    isLoggedIn: false,
-  };
-
-  login = () => {
-    this.setState({isLoggedIn: true});
-  }
-  render() {
-    return (
+const App  = ({isLoggedIn, login})=> (
       <div className="App">    
       <Router>
           <React.Fragment>
           <I18nextProvider i18n={i18next}>
-            <NavBar login={this.login} isLoggedIn={this.state.isLoggedIn}/>
+            <NavBar login={login} isLoggedIn={isLoggedIn}/>
           </I18nextProvider>
           <div className="container">
               <Switch>          
-                {/* <Route exec render={() => (<Redirect to="/about" />)} path="/" />   */}
                 <Route exact path="/" component={Home}  />  
                 <Route component={About} path="/about" />  
-                <Route exact component={() => <ProductListPage isLoggedIn={this.state.isLoggedIn} />  } path="/products" />
+                <Route exact component={() => <ProductListPage isLoggedIn={isLoggedIn} />  } path="/products" />
                 <Route component={CartPage} path="/cart" /> 
                 <Route component={Contact} path="/contact" /> 
-                <Route component={(props) => <ProductItemPage {...props} isLoggedIn={this.state.isLoggedIn} />} path="/products/:id" />              
+                <Route component={(props) => <ProductItemPage {...props} isLoggedIn={isLoggedIn} />} path="/products/:id" />              
               </Switch>
               </div>
           </React.Fragment>
       </Router>
       </div>
-    );
-  }
-}
+  );
 
-export default App;
+
+  const mapStateToProps = state => ({
+    isLoggedIn: state.app.isLoggedIn
+  });
+  
+  const mapDispatchToProps = (dispatch) => ({
+      login: () => dispatch(login()),
+  });
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(App);

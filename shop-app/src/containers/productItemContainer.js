@@ -1,57 +1,33 @@
 import React from 'react';
 import ProductItem from '../components/Products/components/productItem';
-import cartService from '../services/cartService';
-import productService from "../services/productsService";
+import {loadProduct} from '../actions';
+import {connect} from 'react-redux';
 
 class ProductItemContainer extends React.Component {
-  state = {
-    product: null,
-  };
-  mounted = false;
-
   componentDidMount() {
-    this.mounted = true;
-    this.loadProduct();
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.id !== prevProps.id) {
-      this.loadProduct();
-    }
-  }
-
-  async loadProduct() {
-    const {id} = this.props;
-
-    if (id) {
-      const product = await productService.loadProduct(id);
-      if (this.mounted) {
-        this.setState({product});
-      }
-    }
-   
-  }
-
-  addToCart = () => {
-    cartService.addToCart(this.state.product);
+    var {id} = this.props;
+    this.props.loadProduct(id);
   }
 
   render() {
-    const {product} = this.state;
-    // console.log("lo somthing");
-    return  product ? (
+    return  this.props.product ? (
       <ProductItem
-        product={product}
+        product={this.props.product}
         isLoggedIn={this.props.isLoggedIn} 
-         />
+      />
     ) : (
       <span>Loading..</span>
     );
   }
 }
 
-export default ProductItemContainer;
+const mapStateToProps = state => ({
+  isLoading: state.products.isLoading,
+  product: state.products.product
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    loadProduct: (id) => dispatch(loadProduct(id))
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProductItemContainer);
