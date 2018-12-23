@@ -1,8 +1,12 @@
 import React from 'react';
 import {Image,Thumbnail} from "react-bootstrap";
 
-export default class About extends React.Component {
-    selectView(view) {
+interface Props {
+  selectView: (view: string) => void;
+}
+
+export default class About extends React.Component<Props, {}> {
+    selectView = (view: string) => {
         this.props.selectView(view);
     }
   render() {

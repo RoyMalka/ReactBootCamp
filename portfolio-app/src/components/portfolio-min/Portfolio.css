@@ -7,10 +7,11 @@
     background: -webkit-linear-gradient(to top, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     text-align: center;
+    height: 420px;
     
 }
 
-.portfolio-min-buttons {
+.portfolio-buttons {
     display: "inline";
 }
 
@@ -21,4 +22,11 @@
 
 .Portfolio img {
     background: transparent;
+    max-height: 200px;
+}
+
+.close-btn {
+    right: 17px; 
+    top:3px; 
+    position: absolute;
 }

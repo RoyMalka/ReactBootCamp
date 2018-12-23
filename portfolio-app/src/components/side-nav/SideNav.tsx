@@ -2,8 +2,12 @@ import React from 'react';
 import './SideNav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default class SideNav extends React.Component {
- selectView(view) {
+interface Props {
+  selectView: (view: string) => void;
+}
+
+export default class SideNav extends React.Component<Props,{}> {
+ selectView(view: string) {
    this.props.selectView(view);
  }
   render() {

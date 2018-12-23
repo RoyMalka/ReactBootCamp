@@ -1,19 +1,26 @@
-import React from 'react';
-import "./EditPortfolio.css"
+import React, { FormEvent, ChangeEvent } from 'react';
+import {Portfolio} from '../../models/Portfolio';
+interface State  {
+    portfolio: Portfolio
+}
 
-export default class EditPortfolio extends React.Component {
-    constructor(props) {
+interface Props {
+    portfolio: Portfolio;
+    edit: (portfolio: Portfolio) => void;
+    selectView: (view: string) => void;
+
+}
+
+export default class EditPortfolio extends React.Component<Props,State> {
+    constructor(props: Props) {
         super(props);
         this.state = 
         {
             portfolio: props.portfolio
         };
-    
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-      handleChange(event) {
+      handleChange = (event: ChangeEvent<HTMLInputElement> ) => {
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -26,16 +33,15 @@ export default class EditPortfolio extends React.Component {
         }))
       }
     
-      handleSubmit(event) {
+      handleSubmit = (event: FormEvent<HTMLFormElement>) =>{
         this.edit(this.state.portfolio)
         event.preventDefault();
        
       }
-
-      edit(portfolio){
+      edit(portfolio: Portfolio){
           this.props.edit(portfolio);   
       }
-      selectView(view) {
+      selectView(view: string) {
           this.props.selectView(view);
       }
   render() {
